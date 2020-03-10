@@ -18,3 +18,17 @@
 // document.body.addEventListener('click',clickEventHandler)
 
 // Above was from today's lesson. My code begions now.
+function makeItBold(event) {
+  event.target.style.fontWeight = 'bold';
+  setTimeout(function(){
+    event.target.style.fontWeight = 'normal';
+  }, 500) 
+}
+const allH2s = document.querySelectorAll('h2');
+console.log(allH2s);
+for (let i = 0; i < allH2s.length; i++) {
+  console.log(allH2s[i]);
+  allH2s[i].addEventListener('mouseover', makeItBold);
+}
+  
+
