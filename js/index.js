@@ -23,7 +23,6 @@
 // Makes any H2 you hover over bold for a moment
 const allH2s = document.querySelectorAll('h2');
 for (let i = 0; i < allH2s.length; i++) {
-  // console.log(allH2s[i]);
   allH2s[i].addEventListener('mouseover', makeItBold);
 }
 
@@ -38,7 +37,6 @@ function makeItBold(event) {
 funBusImg.addEventListener('mouseleave', startMe);
 
 function startMe(event) {
-  console.log('called startMe');
   event.target.removeEventListener(event.type, arguments.callee);
   alert('Click the van to start it!');
 }
@@ -49,15 +47,39 @@ document.querySelector(".intro > img").addEventListener('click', playSound);
 function playSound(event) {
   const audio = new Audio("../audio/carstartgarage.mp3");
   audio.play();
-  // console.log('called playSound');
   event.stopPropagation();
 }
 
 // Double clicking an image hides it temporarily
 adventureImage.addEventListener('dblclick', function (event) {
-  console.log('hide me')
   event.target.style.display = 'none';
   setTimeout(function () {
     event.target.style.display = 'block';
   }, 700)
 })
+
+// Nav Items will no longer refresh and they go bold on hover
+const navItems = document.querySelectorAll('.nav-link');
+console.log(navItems);
+for (let i = 0; i < navItems.length; i++) {
+  navItems[i].addEventListener('mouseenter', function (event) {
+    event.target.style.fontWeight = 'bold';
+    console.log('hovering')
+  });
+  navItems[i].addEventListener('mouseout', function (event) {
+    event.target.style.fontWeight = 'normal';
+    console.log('leaving');
+  });
+  navItems[i].addEventListener('mousedown', function (event) {
+    event.target.style.color = 'lightblue';
+    event.target.style.fontWeight = 'normal';
+    console.log('mouse down');
+  });
+  navItems[i].addEventListener('mouseup', function (event) {
+    event.target.style.color = 'black';
+    console.log('mouse up');
+  });
+  navItems[i].addEventListener('click', function (event) {
+    event.preventDefault();
+  })
+}
