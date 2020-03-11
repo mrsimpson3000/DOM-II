@@ -38,7 +38,7 @@ funBusImg.addEventListener('mouseleave', startMe);
 
 function startMe(event) {
   event.target.removeEventListener(event.type, arguments.callee);
-  alert('Click the van to start it!');
+  alert('Click the Fun Bus to start it!');
 }
 
 // If you click the fun bus img it plays a sound
@@ -47,8 +47,13 @@ document.querySelector(".intro > img").addEventListener('click', playSound);
 function playSound(event) {
   const audio = new Audio("../audio/carstartgarage.mp3");
   audio.play();
-  event.stopPropagation();
+  event.stopPropagation(); // Found that the audio was playing more than one instance 
 }
+
+// Alert the user that the bus is started
+// document.querySelector(".intro > img").addEventListener('ended', function (event) {
+//   alert('The Fun Bus is started. Enjoy the ride.')
+// })
 
 // Double clicking an image hides it temporarily
 adventureImage.addEventListener('dblclick', function (event) {
@@ -60,26 +65,35 @@ adventureImage.addEventListener('dblclick', function (event) {
 
 // Nav Items will no longer refresh and they go bold on hover
 const navItems = document.querySelectorAll('.nav-link');
-console.log(navItems);
 for (let i = 0; i < navItems.length; i++) {
   navItems[i].addEventListener('mouseenter', function (event) {
     event.target.style.fontWeight = 'bold';
-    console.log('hovering')
   });
   navItems[i].addEventListener('mouseout', function (event) {
     event.target.style.fontWeight = 'normal';
-    console.log('leaving');
   });
   navItems[i].addEventListener('mousedown', function (event) {
     event.target.style.color = 'lightblue';
     event.target.style.fontWeight = 'normal';
-    console.log('mouse down');
   });
   navItems[i].addEventListener('mouseup', function (event) {
     event.target.style.color = 'black';
-    console.log('mouse up');
   });
   navItems[i].addEventListener('click', function (event) {
     event.preventDefault();
   })
 }
+
+// noCopy.addEventListener('select', function alertMe(event) {
+//   alert("Don't try to copy my cool Header name!");
+// })
+
+// Let's the user know what key they pressed. So exciting.
+document.addEventListener('keydown', function (event) {
+  alert(`You just presses the ${event.code}`);
+})
+
+// Let's the user know that they just copied some text just in case they forgot
+document.addEventListener('copy', function (event) {
+  alert('You just copied some text');
+})
